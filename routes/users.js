@@ -9,11 +9,11 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  router.get("/:user_id", (req, res) => {
+    db.query(`SELECT * FROM quizzes WHERE isPrivate = FALSE;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const templateVars = {quizzes: data.rows, user_id: req.params.user_id};
+        res.render('../views/home', templateVars);
       })
       .catch(err => {
         res
@@ -21,5 +21,9 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+  router.get("/:user_id/makequiz", (req, res) => {
+    let templateVar = { user_id: req.params.user_id };
+    res.render('../views/makeQuiz', templateVar);
+  })
   return router;
 };
