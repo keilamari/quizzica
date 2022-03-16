@@ -28,7 +28,7 @@
   <div class="main-container">
     <div id="create-quiz-cont">
       <h1>Create your Quiz</h1>
-      <form id="create-quiz" method="POST" action="/users/<%= user_id %>/createquiz">
+      <form id="create-quiz" method="POST" action="/users/<%= user_id %>">
         <label for="name">Quiz Title:</label>
         <input id="quiz-title" type="text" name="name">
         <br>
@@ -40,7 +40,7 @@
           <input id="is-public" type="radio" name="isPrivate" value="false">List as public</input>
           <br>
         </div>
-        <button type="submit"> Add Your Question</button>
+        <button type="submit">Submit Details</button>
       </form>
     </div>
   </div>
