@@ -44,6 +44,9 @@
         </div>
       </a>
       <br>
+      <form method="POST" action="/users/<%= quiz.user_id %>/delete/<%= quiz.id %>">
+        <button class="delete-btn" type="submit">Delete Quiz</button>
+      </form>
       <%}%>
     </div>
   </div>
