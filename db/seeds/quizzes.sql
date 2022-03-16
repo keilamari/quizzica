@@ -1,2 +1,4 @@
-INSERT INTO quizzes (user_id, name, category, description, photo_url, is_public) VALUES (2, 'A big ol quiz', 'Entertainment', 'Give it a try', 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png', true);
-INSERT INTO quizzes (user_id, name, category, description, photo_url, is_public) VALUES (1, 'A test about bees', 'Nature', 'Here is a test', 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png', true);
+INSERT INTO quizzes (user_id, name, description, isPrivate) VALUES(1, 'Mathematics', 'Basic Addition', FALSE);
+INSERT INTO quizzes (user_id, name, description, isPrivate) VALUES(2, 'Mathematics', 'Basic Multiplication', FALSE);
+INSERT INTO quizzes (user_id, name, description, isPrivate) VALUES(1, 'Mathematics', 'Basic Subtraction', FALSE);
+INSERT INTO quizzes (user_id, name, description, isPrivate) VALUES(1, 'Mathematics', 'Basic Division', FALSE);
