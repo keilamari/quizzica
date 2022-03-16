@@ -36,11 +36,13 @@
     <h2>No logins! No sign ups!</h2>
     <div class="links-container">
       <% for (let quiz of quizzes) {%>
-      <a href="/attempts/<%= quiz.id%>/<%= user_id %>">
+
         <div class="quiz-link">
           <%= quiz.name %>
           <br>
+          <a href="/answers/<%= quiz.id%>/<%= user_id %>">
           <p><%= quiz.description %></p>
+        </a>
         </div>
       </a>
       <br>
