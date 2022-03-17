@@ -29,7 +29,7 @@
   </header>
   <div class="main-wrapper">
     <div>
-      <h2>QUIZ DESCRIPTION: <%= input[0].name%></h2>
+      <h2>QUIZ TITLE: <%= input[0].name%></h2>
       <h4>SELECT ONE CORRECT OPTION FOR EACH QUESTION: </h4>
       <div class = "form-container">
         <form method="POST" action="/answers/<%= input[0].quiz_id %>/result/<%= input[0].user_id %>">
