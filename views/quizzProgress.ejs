@@ -8,48 +8,55 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAunMnAOuhUgD///8AmVkUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMwAAAAAAADMwREREREREAwERERERERRAASIiAAIiEUABIiAzMCIhQAEiIDMwIiFAASIiAAIiIUABIiAzMAIhQAMiIDMzMCFAASAAAAMzAUABAzMAAzMBQAMDMzMzMwFAAyAzMzMwIUADMgAAAAIhQDAzMiIiIiEDMwAAAAAAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/quizProgress.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
   <header>
     <nav>
-      <a href="/home/<%= input[0].user_id %>">
-        <h1>Quizzica</h1>
-      </a>
-      <a href="/users/<%= input[0].user_id %>">
-        <div class="create-quiz-link">
-          Your Quizzes!
-        </div>
-      </a>
+      <a href="/home/<%= input[0].user_id %>">QUIZZICA</a>
+      <div class ="wrapper">
+        <a class ="wrapper link" href="/users/<%= input[0].user_id %>">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%= input[0].user_id %>/makequiz">Make Quiz</a>
+      </div>
+
     </nav>
   </header>
-  <div class="main-container">
-    <div class="quiz-inprog-cont">
-      <h2>Progress on your quiz<%= input[0].name%></h2>
-      <h3>All Questions</h3>
-      <div class="qsofar">
+  <div class="main-wrapper">
+    <div class="quiz-wrapper">
+      <h3>PROGRESS ON YOUR QUIZ : &nbsp;<%= input[0].name%></h3>
+
+      <div class="questions-wrapper">
         <% let questionText = ''; %>
-        <% for (let obj of input) { %>
-        <% if (obj.question === questionText) { %>
-        <li><%= obj.answer %></li>
+        <% for (let element of input) { %>
+        <% if (element.question === questionText) { %>
+        <li><%= element.answer %></li>
         <br>
         <% } else {  %>
-        <% questionText = obj.question %>
+        <% questionText = element.question %>
         <h4><%= questionText %></h4>
         <br>
-        <li><%= obj.answer %></li>
+        <li><%= element.answer %></li>
         <br>
         <% } %>
         <% } %>
         <br>
       </div>
-      <form action="/quiz/<%= input[0].quiz_id %>/questions" method="get">
-        <input type="submit" value="Add Question!">
+      <div class="form-container">
+              <form action="/quiz/<%= input[0].quiz_id %>/questions" method="get">
+        <input class ="edit "type="submit" value="EDIT QUIZ">
       </form>
       <form action="/answers/<%= input[0].quiz_id %>/<%= input[0].user_id %>" method="get">
-        <input type="submit" value="Finished">
+        <input class ="submit" type="submit" value="SUBMIT">
       </form>
+      </div>
     </div>
   </div>
 </body>
