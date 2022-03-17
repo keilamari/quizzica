@@ -30,7 +30,7 @@ module.exports = (db) => {
   // Add questions to the quiz
 
   router.get("/:quizid/questions", (req, res) => {
-    // req.session.quiz_id = req.params.quizid;
+
     db.query(`SELECT id, user_id FROM quizzes WHERE id = $1`, [req.params.quizid])
     .then(data => {
       let templateVar = { quiz_id: req.params.quizid, user: data.rows[0] };
@@ -43,7 +43,7 @@ module.exports = (db) => {
       let query = `INSERT INTO questions (quiz_id, question)
                   VALUES ($1, $2) RETURNING *;`;
       let values = [req.params.quizid, req.body.question];
-      // req.session.quiz_id = req.params.quizid;
+
       db.query(query, values)
         .then(data => {
           const question = data.rows;
@@ -71,7 +71,7 @@ module.exports = (db) => {
       });
   });
 
-
+  
   return router;
 };
 
