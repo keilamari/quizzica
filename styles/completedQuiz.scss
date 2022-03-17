@@ -49,7 +49,6 @@ button {
   background-color: #5cb85c;
   color:#FFFFFF;
   padding:5px 10px;
-  margin:20px 0 0 130px;
   cursor:pointer;
 }
 button:hover{
@@ -77,6 +76,8 @@ label {
 
 .share {
   display: flex;
-  justify-content: space-between;
-
+  justify-content: space-between
+}
+.share-quiz{
+  background-color:#0275d8
 }
