@@ -66,12 +66,12 @@ module.exports = (db) => {
               WHERE questions.id = $1;`, [req.params.questionid])
       .then(data => {
         let question = data.rows[0];
-        let templateVars = { quiz_id: req.params.quizid, question_id: req.params.questionid, question };
+        let templateVars = { quiz_id: req.params.quizid, question_id: req.params.questionid, question, user_id: data.rows[0].user_id };
         res.render('../views/answers', templateVars);
       });
   });
 
-  
+
   return router;
 };
 
