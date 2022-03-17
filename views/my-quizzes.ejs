@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+  <link rel="stylesheet" href="/styles/myQuizzes.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="/users/<%= user_id %>/">QUIZZICA</a>
+      <div class ="wrapper">
+        <a class ="wrapper link" href="/users/<%= user_id %>/my_quizzes">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%= user_id %>/makequiz">Make Quiz</a>
+      </div>
+    </nav>
+  </header>
+  <div class="main-container">
+    <h2>MY QUIZZES</h2>
+    <div class="quiz-container">
+      <% for (let quiz of quizzes) {%>
+        <%if(quiz.isprivate === true){ %>
+          <div class="quiz-card-wrapper">
+            <a id ="quiz-card-link" href="/answers/<%= quiz.id%>/<%= user_id %>"><%= quiz.name %>
+            <p id ="quiz-card-description"><%= quiz.description %></p>
+            </a>
+            <h4 class ="privacy"><%= quiz.isprivate = "⭐️⭐️MY PRIVATE QUIZ⭐️⭐️"%></h4>
+          </div>
+          <form method="POST" action="/users/<%= quiz.user_id %>/delete/<%= quiz.id %>">
+            <button id="delete" type="submit">DELETE QUIZ</button>
+          </form>
+        <% } %>
+      <br>
+      <br>
+      <%}%>
+    </div>
+  </div>
+</body>
+
+</html>
