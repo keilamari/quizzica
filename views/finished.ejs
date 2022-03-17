@@ -4,54 +4,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Finished Quiz</title>
+  <title>Your Quiz</title>
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/completedQuiz.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
   <header>
     <nav>
-      <a href="/home/<%= input[0].user_id %>">
-        <h1>KWIZY</h1>
-      </a>
-      <a href="/users/<%= input[0].user_id %>">
-        <div class="create-quiz-link">
-          Your Quizzes!
-        </div>
-      </a>
+      <a href="/users/<%= input[0].user_id %>">QUIZZICA</a>
+      <div class ="wrapper">
+        <a class ="wrapper link" href="/users/<%= input[0].user_id %>">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%= input[0].user_id %>">Make Quiz</a>
+      </div>
+
     </nav>
   </header>
-  <div class="main-container">
-    <div class="finished-quiz-container">
-      <h2>Your Quiz: <%= input[0].name%></h2>
-      <h3>Please click on one answer for each question:</h3>
-      <div>
+  <div class="main-wrapper">
+    <div>
+      <h2>QUIZ DESCRIPTION: <%= input[0].name%></h2>
+      <h4>SELECT ONE CORRECT OPTION FOR EACH QUESTION: </h4>
+      <div class = "form-container">
         <form method="POST" action="/answers/<%= input[0].quiz_id %>/result/<%= input[0].user_id %>">
           <% let questionText = ''; %>
-          <div class="q-and-a">
-            <% for (let obj of input) { %>
-            <% if (obj.question === questionText) { %>
+          <div class="quiz">
+            <% for (let element of input) { %>
+            <% if (element.question === questionText) { %>
             <div class="answers">
-              <input type="radio" name="<%= obj.question_id%>" value="<%= obj.id%>"><%= obj.answer %></input>
+              <input type="radio" name="<%= element.question_id%>" value="<%= element.id%>"><%= element.answer %></input>
               <br>
             </div>
             <% } else {  %>
-            <% questionText = obj.question %>
-            <h4 class="question"><%= questionText %></h4>
+            <% questionText = element.question %>
+            <h4 class="question">QUESTION : &nbsp;<%= questionText %></h4>
             <br>
+
             <div class="answers">
-              <input type="radio" name="<%= obj.question_id%>" value="<%= obj.id%>"><%= obj.answer %></input>
+              <input type="radio" name="<%= element.question_id%>" value="<%= element.id%>"><%= element.answer %></input>
               <br>
             </div>
             <% } %>
             <% } %>
             <br>
-            <button class="btn-answer_submit" type="submit">Submit Quiz</button>
+            <button class="submit" type="submit">SUBMIT TO SEE RESULTS</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
