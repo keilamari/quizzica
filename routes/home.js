@@ -11,6 +11,11 @@ module.exports = (db) => {
       const templateVar = {quizzes: data.rows, user_id: req.params.user_id};
       res.redirect('/users/1');
     })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
 
   return router;

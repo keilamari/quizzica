@@ -65,6 +65,11 @@ module.exports = (db) => {
       [req.params.quiz_id, req.params.user_id])
       .then(() => {
         res.redirect(`/users/${req.params.user_id}`);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
     });
   return router;

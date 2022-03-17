@@ -24,6 +24,11 @@ module.exports = (db) => {
       .then(data => {
         let templateVar = { input: data.rows }
         res.render('../views/quizzProgress', templateVar)
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
   });
 
@@ -36,6 +41,11 @@ module.exports = (db) => {
       let templateVar = { quiz_id: req.params.quizid, user: data.rows[0] };
       res.render('../views/questions', templateVar);
     })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   })
     // Adding questions to the database
 
@@ -68,6 +78,11 @@ module.exports = (db) => {
         let question = data.rows[0];
         let templateVars = { quiz_id: req.params.quizid, question_id: req.params.questionid, question, user_id: data.rows[0].user_id };
         res.render('../views/answers', templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
       });
   });
 
