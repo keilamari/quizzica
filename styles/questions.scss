@@ -1,0 +1,44 @@
+.main-wrapper {
+  height : 300px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:50px
+}
+h2{
+  background-color:#FFFFFF;
+  padding:6px 10px;
+  border-radius:5px;
+  text-align:center
+}
+button {
+  outline:none;
+  border:none;
+  border-radius: 5px;
+  background-color: #5cb85c;
+  color:#FFFFFF;
+  padding:5px 10px;
+  margin-top:20px;
+  cursor:pointer;
+}
+button:hover{
+  background-color:#228C22;
+}
+input {
+  font-family: 'Raleway', sans-serif;
+  background-color:#FFFFFF;
+  border:#FFFFFF;
+  border-radius:5px;
+  font-size:16px;
+  padding:3px;
+  height:29px
+}
+label {
+  padding: 5px 20px;
+  background-color:black;
+  color:white;
+  margin-bottom:5px;
+  text-align:center;
+  border-radius:5px;
+}
