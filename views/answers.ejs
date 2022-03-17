@@ -23,7 +23,7 @@
     <nav>
       <a href="/users/">QUIZZICA</a>
       <div class ="wrapper">
-        <a class ="wrapper link" href="/users/">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%=user_id%>/my_quizzes">My Quizzes</a>
         <a class ="wrapper link" href="/users/1/makequiz">Make Quiz</a>
       </div>
     </nav>
@@ -31,6 +31,7 @@
   <div class="main-wrapper">
     <div class="Add-answers-wrapper">
       <h2>QUESTION: <%= question.question %></h2>
+
       <h4>PLEASE ADD FOUR OPTIONS TO YOUR QUESTION:</h4>
       <form id="answers-form" method="POST" action="/questions/<%= question_id%>">
         <label for="answer1">OPTION A</label>

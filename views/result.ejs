@@ -22,9 +22,9 @@
 <body>
   <header>
     <nav>
-      <a href="/home/<%= attempt[0].user_id %>">QUIZZICA</a>
+      <a href="/home/">QUIZZICA</a>
       <div class ="wrapper">
-        <a class ="wrapper link" href="/users/<%= attempt[0].user_id %>">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%= attempt[0].user_id %>/my_quizzes">My Quizzes</a>
         <a class ="wrapper link" href="/users/<%= attempt[0].user_id %>/makequiz">Make Quiz</a>
       </div>
 
@@ -33,7 +33,7 @@
   <div class="main-wrapper">
     <div class="result-wrapper">
       <h2>YOUR RESULTS</h2>
-      <h4>QUIZ DESCRIPTION :<%= attempt[0].name %></h4>
+      <h4>QUIZ TITLE :<%= attempt[0].name %></h4>
       <div class="results">
         <%let result = []%>
         <%let total = []%>
