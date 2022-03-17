@@ -9,17 +9,9 @@ module.exports = (db) => {
     `)
     .then(data => {
       const templateVar = {quizzes: data.rows, user_id: req.params.user_id};
-      res.render('../views/home', templateVar);
+      res.redirect('/users/1');
     })
   });
-  // router.get('/:user_id', (req, res) => {
-  //   db.query(`
-  //   SELECT * FROM quizzes WHERE isPrivate = FALSE;
-  //   `)
-  //   .then(data => {
-  //     const templateVar = {quizzes: data.rows, user_id: req.params.user_id};
-  //     res.render('../views/home', templateVar);
-  //   })
-  // });
+
   return router;
 };
