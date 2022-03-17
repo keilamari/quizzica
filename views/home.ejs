@@ -8,51 +8,46 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="/home/">
-        <h1>Quizzica</h1>
-      </a>
-      <a href="/users/<%= user_id %>">
-        <div class="create-quiz-link">
-          Your Quizzes!
-        </div>
-      </a>
-      <a href="/users/<%= user_id %>/makequiz">
-        <div class="create-quiz-link">
-          Make Quiz
-        </div>
-      </a>
-    </nav>
-  </header>
+  <%- include('partials/_header') %>
   <div class="main-container">
-    <h1>Explore all Public quizzes</h1>
-    <h2>No logins! No sign ups!</h2>
-    <div class="links-container">
+    <h2>EXPLORE ALL PUBLIC QUIZZES</h2>
+    <!-- <h4>NO LOGINS! NO SIGNUPS!</h4> -->
+    <div class="quiz-container">
       <% for (let quiz of quizzes) {%>
-
-        <div class="quiz-link">
-          <%= quiz.name %>
-          <br>
-          <a href="/answers/<%= quiz.id%>/<%= user_id %>">
-          <p><%= quiz.description %></p>
-        </a>
+        <%if(quiz.isprivate === false){ %>
+        <div class="quiz-card-wrapper">
+            <a id ="quiz-card-link" href="/answers/<%= quiz.id%>/<%= user_id %>"><%= quiz.name %>
+              <br>
+              <p id ="quiz-card-description"><%= quiz.description %></p>
+            </a>
+            <h4 class ="privacy">PUBLIC QUIZ</h4>
         </div>
-      </a>
-      <br>
-      <form method="POST" action="/users/<%= quiz.user_id %>/delete/<%= quiz.id %>">
-        <button class="delete-btn" type="submit">Delete Quiz</button>
-      </form>
+        <% }%>
+        <%if(quiz.isprivate === true){ %>
+          <div class="quiz-card-wrapper">
+              <a id ="quiz-card-link" href="/answers/<%= quiz.id%>/<%= user_id %>"><%= quiz.name %>
+                <br>
+                <p id ="quiz-card-description"><%= quiz.description %></p>
+              </a>
+              <h4 class ="privacy"><%= quiz.isprivate = "PUBLIC QUIZ"%></h4>
+          </div>
+          <form method="POST" action="/users/<%= quiz.user_id %>/delete/<%= quiz.id %>">
+            <button id="delete" type="submit">DELETE QUIZ</button>
+          </form>
+          <% }%>
       <%}%>
     </div>
   </div>
-  <script type="text/javascript" src="/scripts/client.js"></script>
+
 </body>
 
 </html>
