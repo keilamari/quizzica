@@ -8,41 +8,63 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/result.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
 </head>
 
 <body>
   <header>
     <nav>
-      <a href="/home/<%= attempt[0].user_id %>">
-        <h1>KWIZY</h1>
-      </a>
-      <a href="/users/<%= attempt[0].user_id %>">
-        <div class="create-quiz-link">
-          Your Quizzes!
-        </div>
-      </a>
+      <a href="/home/<%= attempt[0].user_id %>">QUIZZICA</a>
+      <div class ="wrapper">
+        <a class ="wrapper link" href="/users/<%= attempt[0].user_id %>">My Quizzes</a>
+        <a class ="wrapper link" href="/users/<%= attempt[0].user_id %>/makequiz">Make Quiz</a>
+      </div>
+
     </nav>
   </header>
-  <div class="main-container">
-    <div class="results">
-      <h1>Your Quiz Result!</h1>
-      <h1><%= attempt[0].name %></h1>
-      <div class="answer-results">
+  <div class="main-wrapper">
+    <div class="result-wrapper">
+      <h2>YOUR RESULTS</h2>
+      <h4>QUIZ DESCRIPTION :<%= attempt[0].name %></h4>
+      <div class="results">
+        <%let result = []%>
+        <%let total = []%>
+          <h2>TOTAL SCORE</h2>
+        <% for ( let i of attempt ) { %>
+          <tr>
+            <% if(i.iscorrect === true) {%>
+            <%result.push(i.iscorrect)%>
+            <% } %>
+            <% } %>
+            <h4 class ="score"> SCORE : 
+              <%= result.length %>/<%= attempt.length%>
+            </h4>
+          </tr>
         <% for (let answer of attempt) { %>
-        <span class="question-results"> Question: <%= answer.question %> </span>
-        <span class="input-answer"> Your Answer: <%= answer.answer %></span>
+        <span class="question"> Question: <%= answer.question %> </span>
+        <span class="answer"> Your Answer: <%= answer.answer %></span>
         <% if (answer.iscorrect === false) { %>
-        <span class="false">WRONG</span>
+        <span class="false">😬 WRONG ANSWER</span>
         <br>
         <% } else { %>
-          <span class="true">CORRECT</span>
+          <span class="true">🥳 CORRECT ANSWER</span>
         <br>
         <% } %>
       <% } %>
+      <button onclick="prompt('Press Ctrl + C, then Enter to copy to clipboard',window.location.href)">
+        SHARE RESULTS
+      </button>
     </div>
     </div>
-    <a href="/users/<%= attempt[0].user_id%>"> <div class="quiz-redirect">Take another quiz!</div></a>
+    <a class="redirectLink" href="/users/<%= attempt[0].user_id%>">ATTEMPT ANOTHER QUIZ</a>
   </div>
 </body>
 
