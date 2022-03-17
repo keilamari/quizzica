@@ -37,7 +37,7 @@ module.exports = (db) => {
         })
       })
       .catch(err => {
-        res.send(`Please click back and complete the form.`);
+        res.send(`Err:${err}`);
       });
   });
   return router;
