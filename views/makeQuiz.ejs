@@ -8,39 +8,34 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/makequiz.css" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/client.js"></script>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="/home/<%= user_id %>">
-        <h1>Quizzica</h1>
-      </a>
-      <a href="/users/<%= user_id %>">
-        <div class="create-quiz-link">
-          Your Quizzes!
-        </div>
-      </a>
-    </nav>
-  </header>
-  <div class="main-container">
-    <div id="create-quiz-cont">
-      <h1>Create your Quiz</h1>
-      <form id="create-quiz" method="POST" action="/users/<%= user_id %>/makequiz">
-        <label for="name">Quiz Title:</label>
-        <input id="quiz-title" type="text" name="name">
+  <%- include('partials/_header') %>
+  <div class="main-wrapper">
+    <div id="quiz-container">
+      <h2>CREATE YOUR OWN QUIZ</h2>
+      <form id="make-quiz-form" method="POST" action="/users/<%= user_id %>/makequiz">
+        <label for="name">QUIZ TITLE</label>
+        <input id="quiz-title"type="text" name="name">
         <br>
-        <label for="description"> Quiz Description:</label>
+        <label for="description">QUIZ DESCRIPTION</label>
         <input id="quiz-description" type="text" name="description">
         <br>
         <div class="privacy">
-          <input id="is-private" type="radio" name="isPrivate" value="true"> List as private</input>
-          <input id="is-public" type="radio" name="isPrivate" value="false">List as public</input>
+          <input id="private" type="radio" name="isPrivate" value="true">LIST AS PRIVATE</input>
+          <input id="public" type="radio" name="isPrivate" value="false">LIST AS PUBLIC</input>
           <br>
         </div>
-        <button type="submit">Submit Details</button>
+        <button type="submit">SUBMIT DETAILS</button>
       </form>
     </div>
   </div>
